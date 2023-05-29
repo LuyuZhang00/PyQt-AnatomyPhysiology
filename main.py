@@ -3,6 +3,7 @@ import random
 import time
 from selenium import webdriver, common
 from selenium.webdriver import ActionChains, Keys
+from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.common.by import By
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QMessageBox
@@ -12,6 +13,18 @@ from windows_ui import Ui_MainWindow
 global ans
 ans=""
 urlbing="https://cn.bing.com/"
+urlchatgpt="https://poe.com/ChatGPT"
+global q
+q=""
+global a
+a=""
+global b
+b=""
+global c
+c=""
+global d
+d=""
+
 class MyWindow(QtWidgets.QMainWindow):
     # ui = None
 
@@ -31,40 +44,28 @@ class MyWindow(QtWidgets.QMainWindow):
         self.ui.pushButton_C.pressed.connect(self.C)
         self.ui.pushButton_D.pressed.connect(self.D)
         self.ui.pushButton_Bing.clicked.connect(self.AskBing)
-        self.myth=myThead()
-        self.ui.pushButton_chatgpt.clicked.connect(self.AskChatGPT)
-        # self.myth = myThead()
+
         self.show()
 
-    # def AskBing(self):
-    #     edge_options = webdriver.EdgeOptions()
-    #     #屏蔽inforbar
-    #     edge_options.add_experimental_option('useAutomationExtension', False)
-    #     edge_options.add_experimental_option('excludeSwitches', ['enable-automation', 'enable-logging'])
-    #
-    #
-    #     browser = webdriver.Edge(options=edge_options)
-    #     browser.get(urlbing)
-    #     input_word=browser.find_element(By.ID,'sb_form_q')
-    #     input_word.send_keys(self.ui.label_ques.text()+" A、"+self.ui.label_A.text()+" B、"+self.ui.label_B.text()+" C、"+self.ui.label_C.text()+" D、"+self.ui.label_D.text())
-    #     # input_word.send_keys("你好")
-    #     browser.find_element(By.ID,'search_icon').click()
-    #     # time.sleep(100)
-    #     browser.quit()
-        # ActionChains(browser).key_down(Keys.CONTROL).send_keys("t").key_up(Keys.CONTROL).perform()
     def AskBing(self):
+        self.myth = myThead()
         self.myth.start()
+        global q,a,b,c,d
+        q=self.ui.label_ques.text()
+        a=self.ui.label_A.text()
+        b=self.ui.label_B.text()
+        c=self.ui.label_C.text()
+        d=self.ui.label_D.text()
 
 
-    def AskChatGPT(self):
-        browser = webdriver.Chrome()
-        browser.get('https://www.chatbot.com.cn/chatgpt/')
-        input_word=browser.find_element(By.class_name,'input')
-        input_word.send_keys(self.ui.label_ques.text())
-        # input_word.send_keys("你好")
-        browser.find_element(By.ID,'send').click()
-        # time.sleep(100)
-        browser.quit()
+    # def AskChatGPT(self):
+    #     self.myth.start()
+    #     global q,a,b,c,d
+    #     q=self.ui.label_ques.text()
+    #     a=self.ui.label_A.text()
+    #     b=self.ui.label_B.text()
+    #     c=self.ui.label_C.text()
+    #     d=self.ui.label_D.text()
 
     def ShowQuestion(self):
         self.ui.stackedWidget.setCurrentIndex(0)
@@ -102,27 +103,57 @@ class MyWindow(QtWidgets.QMainWindow):
             self.ui.stackedWidget.setCurrentIndex(2)
 
 
-class myThead(MyWindow,QtCore.QThread):
+class myThead(QtCore.QThread):
     def __init__(self):
+        # QtCore.QThread.__init__(self)
+        # MyWindow.__init__(self)
         super(myThead, self).__init__()
 
     def AskBing(self):
-        edge_options = webdriver.EdgeOptions()
-        #屏蔽inforbar
-        edge_options.add_experimental_option('useAutomationExtension', False)
-        edge_options.add_experimental_option('excludeSwitches', ['enable-automation', 'enable-logging'])
-
-
-        browser = webdriver.Edge(options=edge_options)
+        # edge_options = webdriver.EdgeOptions()
+        # #屏蔽inforbar
+        # edge_options.add_experimental_option('useAutomationExtension', False)
+        # edge_options.add_experimental_option('excludeSwitches', ['enable-automation', 'enable-logging'])
+        # edge_options.add_argument('--disable-popup-blocking')
+        # browser = webdriver.Edge(options=edge_options)
+        global q, a, b, c, d
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument('--disable-popup-blocking')
+        chrome_options.add_experimental_option('useAutomationExtension', False)
+        chrome_options.add_experimental_option('excludeSwitches', ['enable-automation', 'enable-logging'])
+        browser = webdriver.Chrome(options=chrome_options)
         browser.get(urlbing)
         input_word=browser.find_element(By.ID,'sb_form_q')
-        input_word.send_keys(self.ui.label_ques.text()+" A、"+self.ui.label_A.text()+" B、"+self.ui.label_B.text()+" C、"+self.ui.label_C.text()+" D、"+self.ui.label_D.text())
-        # input_word.send_keys("你好")
+        # input_word.send_keys(self.ui.label_ques.text()+" A、"+self.ui.label_A.text()+" B、"+self.ui.label_B.text()+" C、"+self.ui.label_C.text()+" D、"+self.ui.label_D.text())
+        input_word.send_keys(q + " A、" + a + " B、" + b + " C、" + c + " D、" + d)
         browser.find_element(By.ID,'search_icon').click()
-        time.sleep(100)
-        # browser.quit()
+        time.sleep(20)
+        browser.quit()
+
+    #这部分未完成
+    # def AskChatGPT(self):
+    #     # edge_options = webdriver.EdgeOptions()
+    #     # #屏蔽inforbar
+    #     # edge_options.add_experimental_option('useAutomationExtension', False)
+    #     # edge_options.add_experimental_option('excludeSwitches', ['enable-automation', 'enable-logging'])
+    #     # edge_options.add_argument('--disable-popup-blocking')
+    #     # browser = webdriver.Edge(options=edge_options)
+    #     global q, a, b, c, d
+    #     chrome_options = webdriver.ChromeOptions()
+    #     chrome_options.add_argument('--disable-popup-blocking')
+    #     chrome_options.add_experimental_option('useAutomationExtension', False)
+    #     chrome_options.add_experimental_option('excludeSwitches', ['enable-automation', 'enable-logging'])
+    #     browser = webdriver.Chrome(options=chrome_options)
+    #     browser.get(urlchatgpt)
+    #     input_word=browser.find_element(By.CLASS_NAME,'GrowingTextArea_textArea__eadlu')
+    #     # input_word.send_keys(self.ui.label_ques.text()+" A、"+self.ui.label_A.text()+" B、"+self.ui.label_B.text()+" C、"+self.ui.label_C.text()+" D、"+self.ui.label_D.text())
+    #     input_word.send_keys(q + " A、" + a + " B、" + b + " C、" + c + " D、" + d)
+    #     browser.find_element(By.CLASS_NAME,'Button_buttonBase__0QP_m Button_primary__pIDjn ChatMessageSendButton_sendButton__OMyK1 ChatMessageInputContainer_sendButton__s7XkP').click()
+    #     time.sleep(600)
+    #     # browser.quit()
     def run(self):
         self.AskBing()
+        # self.AskChatGPT()
 
 
 if __name__ == "__main__":
