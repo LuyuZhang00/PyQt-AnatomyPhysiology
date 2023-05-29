@@ -1,12 +1,16 @@
 import sqlite3
 import random
 import time
+import os
+import sys
 from selenium import webdriver, common
 from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.common.by import By
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QMessageBox
+from subprocess import CREATE_NO_WINDOW
+from selenium.webdriver.chrome.service import Service as ChromeService
 
 from windows_ui import Ui_MainWindow
 
@@ -121,13 +125,18 @@ class myThead(QtCore.QThread):
         chrome_options.add_argument('--disable-popup-blocking')
         chrome_options.add_experimental_option('useAutomationExtension', False)
         chrome_options.add_experimental_option('excludeSwitches', ['enable-automation', 'enable-logging'])
-        browser = webdriver.Chrome(options=chrome_options)
+
+        chrome_service = ChromeService('chromedriver')
+        chrome_service.creationflags =CREATE_NO_WINDOW
+        # chrome_service.add_argument('--headless')
+        chrome_service = ChromeService(resource_path("./chromedriver.exe"))
+        browser = webdriver.Chrome(service=chrome_service,options=chrome_options)
         browser.get(urlbing)
         input_word=browser.find_element(By.ID,'sb_form_q')
         # input_word.send_keys(self.ui.label_ques.text()+" A、"+self.ui.label_A.text()+" B、"+self.ui.label_B.text()+" C、"+self.ui.label_C.text()+" D、"+self.ui.label_D.text())
         input_word.send_keys(q + " A、" + a + " B、" + b + " C、" + c + " D、" + d)
         browser.find_element(By.ID,'search_icon').click()
-        time.sleep(20)
+        time.sleep(600)
         browser.quit()
 
     #这部分未完成
@@ -155,11 +164,18 @@ class myThead(QtCore.QThread):
         self.AskBing()
         # self.AskChatGPT()
 
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.dirname(__file__)
+    return os.path.join(base_path, relative_path)
 
 if __name__ == "__main__":
     import sys
 
-    conn = sqlite3.connect('test.db')
+    db_path = resource_path('test.db')
+    conn = sqlite3.connect(db_path)
     cur = conn.cursor()
     cur.execute("SELECT * FROM question")
     datas = cur.fetchall()

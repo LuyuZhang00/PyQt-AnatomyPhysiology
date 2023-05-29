@@ -8,7 +8,7 @@ a = Analysis(
     ['main.py'],
     pathex=[],
     binaries=[],
-    datas=[],
+    datas=[('test.db', '.'), ('chromedriver.exe', '.')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
