@@ -14,6 +14,8 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 
 from windows_ui import Ui_MainWindow
 
+
+#这段代码好搓，但我不会写了，先这样吧
 global ans
 ans=""
 urlbing="https://cn.bing.com/"

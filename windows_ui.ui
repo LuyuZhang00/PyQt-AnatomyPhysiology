@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>630</width>
+    <width>620</width>
     <height>700</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>630</width>
+    <width>620</width>
     <height>700</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>630</width>
+    <width>620</width>
     <height>700</height>
    </size>
   </property>
@@ -26,6 +26,18 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="minimumSize">
+    <size>
+     <width>620</width>
+     <height>675</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>620</width>
+     <height>675</height>
+    </size>
+   </property>
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
@@ -160,10 +172,10 @@
           </rect>
          </property>
          <property name="styleSheet">
-          <string notr="true">font: 11pt &quot;楷体&quot;;</string>
+          <string notr="true">font: 13pt &quot;楷体&quot;;</string>
          </property>
          <property name="text">
-          <string>点击随机出题则可显示题目</string>
+          <string>点击【随机出题】则可显示题目</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
@@ -179,7 +191,7 @@
           </rect>
          </property>
          <property name="styleSheet">
-          <string notr="true">font:11pt &quot;楷体&quot;;</string>
+          <string notr="true">font:12pt &quot;楷体&quot;;</string>
          </property>
          <property name="text">
           <string/>
@@ -198,7 +210,7 @@
           </rect>
          </property>
          <property name="styleSheet">
-          <string notr="true">font: 11pt &quot;楷体&quot;;</string>
+          <string notr="true">font: 12pt &quot;楷体&quot;;</string>
          </property>
          <property name="text">
           <string/>
@@ -217,7 +229,7 @@
           </rect>
          </property>
          <property name="styleSheet">
-          <string notr="true">font: 11pt &quot;楷体&quot;;</string>
+          <string notr="true">font: 12pt &quot;楷体&quot;;</string>
          </property>
          <property name="text">
           <string/>
@@ -232,11 +244,11 @@
            <x>80</x>
            <y>320</y>
            <width>401</width>
-           <height>41</height>
+           <height>51</height>
           </rect>
          </property>
          <property name="styleSheet">
-          <string notr="true">font: 11pt &quot;楷体&quot;;</string>
+          <string notr="true">font: 12pt &quot;楷体&quot;;</string>
          </property>
          <property name="text">
           <string/>
@@ -261,14 +273,14 @@
         <widget class="QLabel" name="label_3">
          <property name="geometry">
           <rect>
-           <x>20</x>
+           <x>10</x>
            <y>0</y>
            <width>51</width>
            <height>91</height>
           </rect>
          </property>
          <property name="styleSheet">
-          <string notr="true">font: 12pt &quot;楷体&quot;;</string>
+          <string notr="true">font: 13pt &quot;楷体&quot;;</string>
          </property>
          <property name="text">
           <string>题目：</string>
