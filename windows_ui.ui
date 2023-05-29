@@ -180,6 +180,12 @@
          <property name="wordWrap">
           <bool>true</bool>
          </property>
+         <property name="openExternalLinks">
+          <bool>true</bool>
+         </property>
+         <property name="textInteractionFlags">
+          <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+         </property>
         </widget>
         <widget class="QLabel" name="label_A">
          <property name="geometry">
@@ -198,6 +204,9 @@
          </property>
          <property name="wordWrap">
           <bool>true</bool>
+         </property>
+         <property name="textInteractionFlags">
+          <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
          </property>
         </widget>
         <widget class="QLabel" name="label_B">
@@ -218,6 +227,9 @@
          <property name="wordWrap">
           <bool>true</bool>
          </property>
+         <property name="textInteractionFlags">
+          <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+         </property>
         </widget>
         <widget class="QLabel" name="label_C">
          <property name="geometry">
@@ -237,6 +249,9 @@
          <property name="wordWrap">
           <bool>true</bool>
          </property>
+         <property name="textInteractionFlags">
+          <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+         </property>
         </widget>
         <widget class="QLabel" name="label_D">
          <property name="geometry">
@@ -250,11 +265,17 @@
          <property name="styleSheet">
           <string notr="true">font: 12pt &quot;楷体&quot;;</string>
          </property>
+         <property name="inputMethodHints">
+          <set>Qt::ImhNone</set>
+         </property>
          <property name="text">
           <string/>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
+         </property>
+         <property name="textInteractionFlags">
+          <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
          </property>
         </widget>
         <widget class="QPushButton" name="pushButton_question">

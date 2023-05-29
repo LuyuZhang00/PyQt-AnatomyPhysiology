@@ -13,6 +13,8 @@ from subprocess import CREATE_NO_WINDOW
 from selenium.webdriver.chrome.service import Service as ChromeService
 
 from windows_ui import Ui_MainWindow
+import ctypes
+
 
 
 #这段代码好搓，但我不会写了，先这样吧
@@ -38,6 +40,9 @@ class MyWindow(QtWidgets.QMainWindow):
         super(MyWindow, self).__init__(parent)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        # 设置图标
+        self.setWindowIcon(QtGui.QIcon(resource_path('see.png')))
+        ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("myappid")  # 这里的myappid就是上面提到的你的appid
         #
         # self.ui.pushButton_question.setDown(True)
         #设置标题名称
