@@ -8,7 +8,7 @@ a = Analysis(
     ['main.py'],
     pathex=[],
     binaries=[],
-    datas=[('test.db', '.'), ('chromedriver.exe', '.'), ('see.png', '.')],
+    datas=[('test.db', '.'), ('chromedriver.exe', '.'), ('img\\see.png', '.')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -41,5 +41,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['E:\\temporary\\QT\\RandomQuestion\\see.ico'],
+    icon=['E:\\temporary\\QT\\RandomQuestion\\img\\see.ico'],
 )

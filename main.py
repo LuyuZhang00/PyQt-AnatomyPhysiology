@@ -32,7 +32,12 @@ global c
 c=""
 global d
 d=""
-
+global count
+count=0
+global right
+right=0
+global flag
+flag=False
 class MyWindow(QtWidgets.QMainWindow):
     # ui = None
 
@@ -55,6 +60,7 @@ class MyWindow(QtWidgets.QMainWindow):
         self.ui.pushButton_C.pressed.connect(self.C)
         self.ui.pushButton_D.pressed.connect(self.D)
         self.ui.pushButton_Bing.clicked.connect(self.AskBing)
+
 
         self.show()
 
@@ -79,6 +85,13 @@ class MyWindow(QtWidgets.QMainWindow):
     #     d=self.ui.label_D.text()
 
     def ShowQuestion(self):
+
+        global count
+        self.ui.label_count.setText("正确/总数：" + str(right) + "/" + str(count))
+        count+=1
+        global flag
+        flag=True
+
         self.ui.stackedWidget.setCurrentIndex(0)
         line=random.choice(datas)
         self.ui.label_ques.setText(line[0])
@@ -88,30 +101,53 @@ class MyWindow(QtWidgets.QMainWindow):
         self.ui.label_D.setText(line[4])
         global ans
         ans =str(line[5])
+
         # print(datas)
     def A(self):
-        if self.ui.pushButton_A.isDown():
-            print("A")
+        global flag
         if self.ui.pushButton_A.isDown() and ans=="A":
             self.ui.stackedWidget.setCurrentIndex(1)
+            if flag==True:
+                global right
+                right+=1
+                flag=False
         if self.ui.pushButton_A.isDown() and ans!="A":
             self.ui.stackedWidget.setCurrentIndex(2)
+            flag = False
     def B(self):
+        global flag
         if self.ui.pushButton_B.isDown() and ans=="B":
             self.ui.stackedWidget.setCurrentIndex(1)
+            if flag==True:
+                global right
+                right+=1
+                flag=False
         if self.ui.pushButton_B.isDown() and ans!="B":
             self.ui.stackedWidget.setCurrentIndex(2)
+            flag = False
 
     def C(self):
+        global flag
         if self.ui.pushButton_C.isDown() and ans=="C":
             self.ui.stackedWidget.setCurrentIndex(1)
+            if flag==True:
+                global right
+                right+=1
+                flag=False
         if self.ui.pushButton_C.isDown() and ans!="C":
             self.ui.stackedWidget.setCurrentIndex(2)
+            flag = False
     def D(self):
+        global flag
         if self.ui.pushButton_D.isDown() and ans=="D":
             self.ui.stackedWidget.setCurrentIndex(1)
+            if flag==True:
+                global right
+                right+=1
+                flag=False
         if self.ui.pushButton_D.isDown() and ans!="D":
             self.ui.stackedWidget.setCurrentIndex(2)
+            flag = False
 
 
 class myThead(QtCore.QThread):
